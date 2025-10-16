@@ -1,10 +1,8 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
-# Get the absolute path to the project root
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-# Tell Flask exactly where templates and static folders are
 template_dir = os.path.join(project_root, 'templates')
 static_dir = os.path.join(project_root, 'static')
 
@@ -43,3 +41,4 @@ def handler(event, context):
 
 if __name__ == '__main__':
     app.run()
+
