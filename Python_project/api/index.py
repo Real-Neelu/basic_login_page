@@ -1,6 +1,14 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
-app = Flask(__name__)
+# Get the absolute path to the project root
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# Tell Flask exactly where templates and static folders are
+template_dir = os.path.join(project_root, 'templates')
+static_dir = os.path.join(project_root, 'static')
+
+app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 app.secret_key = 'supersecretkey'
 
 USER = {'username': 'demo', 'password': 'password123'}
@@ -16,7 +24,6 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-
         if username == USER['username'] and password == USER['password']:
             session['user'] = username
             flash('Login successful!', 'success')
